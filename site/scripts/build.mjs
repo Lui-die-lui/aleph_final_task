@@ -20,7 +20,7 @@ const esc = (s) =>
 const isFinal = (item) => item && item.status === "확정";
 // 문장 속 날짜를 강조한다: 2026년 8월 11일 / 9월 7일
 const markDates = (html) =>
-  html.replace(/((?:\d{4}년\s)?\d{1,2}월\s\d{1,2}일)/g, '<strong class="date">$1</strong>');
+  html.replace(/(\d{4}년\s\d{1,2}월(?:\s\d{1,2}일)?|\d{1,2}월\s\d{1,2}일)/g, '<strong class="date">$1</strong>');
 const dot = (iso) => iso.replaceAll("-", ".");
 const kb = (p) => `${Math.round(statSync(p).size / 1024)}KB`;
 
@@ -302,7 +302,7 @@ const docsCard = `
           const body = `<span class="past-works__name">${esc(w.name)}</span><span class="past-works__meta">${esc(w.kind)} · ${esc(w.period)}</span><span class="past-works__summary">${esc(w.summary)}</span>`;
           // 공개 링크가 없는 작업(진행 중인 팀 프로젝트 등)은 링크 없이 보여 준다.
           if (!w.href) return `<li><div class="past-works__item">${body}<span class="past-works__link past-works__link--none">${esc(w.noLink ?? "공개 링크 없음")}</span></div></li>`;
-          const linkType = /^https:\/\/github\.com\//.test(w.href) ? "GitHub 저장소" : "사이트 보기";
+          const linkType = w.linkLabel ?? (/^https:\/\/github\.com\//.test(w.href) ? "GitHub 저장소" : "사이트 보기");
           return `<li><a href="${esc(w.href)}" target="_blank" rel="noopener">${body}<span class="past-works__link">${linkType} ↗<span class="sr-only"> (새 창)</span></span></a></li>`;
         }).join("")}
       </ul>

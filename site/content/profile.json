@@ -24,7 +24,7 @@
     },
     {
       "period": "2025.04–2025.12",
-      "title": "웹개발 과정 수강 · ERP 개발 과정 수료",
+      "title": "웹개발 · ERP 개발 과정 수료",
       "detail": "코리아 IT 아카데미"
     },
     {
@@ -63,6 +63,14 @@
       "period": "2026.04",
       "summary": "처음 만든 포트폴리오 사이트 (관리자 대시보드·방명록)",
       "href": "https://lui-archive.vercel.app/"
+    },
+    {
+      "name": "쑥쑥 (Ssuk Ssuk)",
+      "kind": "개인",
+      "period": "2026.07",
+      "summary": "음료 기록과 그룹 미션으로 식물을 키우는 수분 습관 미니앱",
+      "href": "https://minion.toss.im/jVJHUVUz",
+      "linkLabel": "앱 보기 (모바일 전용)"
     },
     {
       "name": "ODYSSEY PLAN",
