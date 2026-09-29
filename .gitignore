@@ -5,6 +5,8 @@
 
 # ---- 공개하면 안 되는 원본 자료 (사적인 기록·재현 ZIP 전체·원본 사진)
 ritual-history-*.json
+*장편소설*.md
+*소설*.md
 T10_multipotential_transfer_submission.zip
 image/
 updater/inputs/*
