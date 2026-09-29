@@ -33,5 +33,12 @@
     "value": "lsg960528@gmail.com",
     "href": "https://mail.google.com/mail/?view=cm&fs=1&to=lsg960528@gmail.com&su=%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%20%EB%B3%B4%EA%B3%A0%20%EC%97%B0%EB%9D%BD%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4",
     "_출처": "본인이 2026-09-29 확정한 공개 연락 수단. 누르면 Gmail 작성 창이 새 창으로 열립니다(기존 포트폴리오와 같은 방식). 공개 연락 수단은 이것 하나만 둡니다."
+  },
+
+  "documents": {
+    "_안내": "published가 true면 사이트에서 내려받을 수 있습니다. 파일은 documents 폴더에서 node build_docs.mjs를 실행하면 site/static/files/에 만들어집니다.",
+    "resume": { "label": "이력서", "published": true, "file": "files/lee-seulgi-resume.docx", "downloadName": "이슬기_이력서.docx" },
+    "coverLetter": { "label": "자기소개서", "published": true, "file": "files/lee-seulgi-cover-letter.docx", "downloadName": "이슬기_자기소개서.docx" },
+    "careerDescription": { "label": "경력기술서", "published": true, "file": "files/lee-seulgi-career-description.docx", "downloadName": "이슬기_경력기술서.docx" }
   }
 }

@@ -7,7 +7,7 @@
 | 경로 | 내용 |
 |---|---|
 | `site/` | 공개 사이트 (Vercel 루트). 외부 패키지 없는 Node 빌드 → `site/dist/` |
-| `site/content/author-decisions.json` | **본인이 확정할 문구 한 파일**: 첫 화면 한 줄 소개, 이야기 첫·마지막 문장, 숫자-고난 짝, 공개 연락 수단 |
+| `site/content/author-decisions.json` | **본인이 확정할 문구 한 파일**: 첫 화면 한 줄 소개, 이야기 첫·마지막 문장, 숫자-고난 짝, 공개 연락 수단, 문서 공개 여부 |
 | `site/content/story.md` | 자기소개 본편(약 1,450자). 사이트와 자기소개서가 같은 파일을 씀 |
 | `site/data/records.json` | 장치가 만든 공개 데이터(숫자·기록 날짜·승인 문단). 직접 고치지 않음 |
 | `site/static/` | 증명사진(메타데이터 제거·축소본), 최종 논문 PDF |

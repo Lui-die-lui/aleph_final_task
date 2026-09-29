@@ -1,6 +1,7 @@
 // 이력서·자기소개서·경력기술서 DOCX 생성
 // 자기소개서 본문은 사이트와 같은 파일(../site/content/story.md, author-decisions.json)을 읽는다.
-// 확인되지 않은 정보는 추측하지 않고 "[확인 필요 #번호]"로 남긴다 → 확인필요목록.md
+// 확인되지 않은 정보는 추측하지 않고 문서에 쓰지 않는다. 남은 확인 항목은 확인필요목록.md에 모은다.
+// 생성한 DOCX는 사이트 다운로드용으로 ../site/static/files/ 에도 복사한다.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -138,7 +139,7 @@ const tasks = [
     result: "완료·배포(odyssey-plan-studio-vzqt.vercel.app).",
   },
   {
-    id: "T01", name: "나를 소개하는 한 페이지", period: "2026 [확인 필요 #8 기간]",
+    id: "T01", name: "나를 소개하는 한 페이지", period: "2026",
     ability: "자기동기력",
     stack: "HTML, CSS, JavaScript (반응형 한 페이지)",
     situation: "음악·웹디자인·개발로 이어진 경험을 처음 보는 사람에게 근거와 함께 보여 줘야 했다.",
@@ -146,7 +147,7 @@ const tasks = [
     result: "공개 주소로 배포(seulgi-portfolio-henna.vercel.app). 좁은 화면에서는 세로로 쌓이는 반응형 구조.",
   },
   {
-    id: "T02", name: "웹 게임 「잉크의 방」", period: "2026 [확인 필요 #8 기간]",
+    id: "T02", name: "웹 게임 「잉크의 방」", period: "2026",
     ability: "자기동기력",
     stack: "TypeScript, React(vinext), Canvas, Node 테스트",
     situation: "기존 코드의 방 생성이 공식 기반이라 가구가 거의 없고, 일부 단계에서 열쇠가 순찰 경로 위에 놓이는 등 설계 문제가 있었다.",
@@ -154,7 +155,7 @@ const tasks = [
     result: "공개 주소로 배포(ink-room-five.vercel.app).",
   },
   {
-    id: "T03", name: "짤칵 스튜디오 (이미지·문구 편집기)", period: "2026 [확인 필요 #8 기간]",
+    id: "T03", name: "짤칵 스튜디오 (이미지·문구 편집기)", period: "2026",
     ability: "자기조절력",
     stack: "Vite, React, TypeScript, localStorage",
     situation: "이미지 편집 도구를 만들되 잘못된 파일이 들어와도 작업이 사라지지 않아야 했다.",
@@ -162,7 +163,7 @@ const tasks = [
     result: "화면비(1:1·4:5·9:16)별 PNG 저장과 템플릿 관리가 되는 편집기. 공개 주소로 배포(zzalkakstudio.vercel.app).",
   },
   {
-    id: "T04", name: "AFTERWAVE (지진 정보판)", period: "2026 [확인 필요 #8 기간]",
+    id: "T04", name: "AFTERWAVE (지진 정보판)", period: "2026",
     ability: "자기조절력",
     stack: "Next.js, React, TypeScript, Supabase, Vitest, USGS GeoJSON",
     situation: "USGS 공개 데이터가 늦거나 틀릴 때도 정보판이 정직하게 상태를 설명해야 했다.",
@@ -170,7 +171,7 @@ const tasks = [
     result: "실패가 나도 임의의 값이 실제 값처럼 보이지 않는 대시보드. 공개 주소로 배포(afterwave-lilac.vercel.app).",
   },
   {
-    id: "[확인 필요 #10 과제 번호]", name: "DO:IT 플랜두씨 다이어리 (+ 7번 과제 접근 제어)", period: "2026 [확인 필요 #8 기간]",
+    id: "ALEPH", name: "DO:IT 플랜두씨 다이어리 (+ 7번 과제 접근 제어)", period: "2026",
     ability: "자기조절력",
     stack: "Next.js App Router, TypeScript, Drizzle ORM, PostgreSQL(Supabase), Tailwind CSS, Vitest",
     situation: "남의 예시가 아니라 내 실제 공부 계획을 넣어 계획과 실제의 차이를 보는 도구가 필요했다.",
@@ -239,7 +240,7 @@ const resume = doc("이력서", [
   h1("교육"),
   table([2600, CONTENT_W - 2600], [
     ["기간", "내용"],
-    ["2026.08.11 ~ 진행 중", "ALEPH 과정 · AX 인프라 (시작일은 리추얼 기록 기준) [확인 필요 #4 공식 과정명·기관·종료일]"],
+    ["2026.08.11 ~ 진행 중", "ALEPH 과정 · AX 인프라 (리추얼 기록 기준 시작일)"],
     ["2025.07 ~ 2025.12", "빅데이터 활용 클라우드 SaaS 기반 시니어케어 ERP 개발 과정 수료 · 코리아 IT 아카데미 (국민내일배움카드)"],
     ["2025.04 ~ 2025.10", "웹개발 과정 수료 · 코리아 IT 아카데미"],
   ]),
@@ -276,7 +277,7 @@ const resume = doc("이력서", [
   h1("프로젝트 · 과제"),
   table([1500, 4100, CONTENT_W - 5600], [
     ["구분", "프로젝트", "사용 기술"],
-    ...tasks.filter((t) => t.id !== "ALEPH").map((t) => [t.id, `${t.name}\n${t.period}`, t.stack]),
+    ...tasks.filter((t) => !t.name.startsWith("과정 중 조별 활동")).map((t) => [t.id, `${t.name}\n${t.period}`, t.stack]),
     ["BR-A", "공개 포트폴리오와 기록 갱신 장치", "정적 HTML/CSS/JS, Node 빌드, Python"],
   ]),
 ]);
@@ -340,7 +341,11 @@ const files = [
   ["lee-seulgi-cover-letter.docx", cover],
   ["lee-seulgi-career-description.docx", career],
 ];
+const SITE_FILES = join(SITE, "static", "files");
+mkdirSync(SITE_FILES, { recursive: true });
 for (const [name, d] of files) {
-  writeFileSync(join(OUT, name), await Packer.toBuffer(d));
-  console.log(`out/${name}`);
+  const buf = await Packer.toBuffer(d);
+  writeFileSync(join(OUT, name), buf);
+  writeFileSync(join(SITE_FILES, name), buf); // 사이트 다운로드용
+  console.log(`out/${name} (+ site/static/files)`);
 }

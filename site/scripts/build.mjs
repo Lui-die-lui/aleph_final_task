@@ -30,6 +30,12 @@ function fail(msg) {
 }
 
 // ------------------------------------------------------------ 안전 확인
+const docs = Object.entries(decisions.documents ?? {}).filter(([k]) => !k.startsWith("_"));
+for (const [, d] of docs) {
+  const onDisk = existsSync(join(ROOT, "static", d.file));
+  if (d.published && !onDisk) fail(`${d.label}: published=true 인데 static/${d.file} 파일이 없습니다. documents 폴더에서 node build_docs.mjs를 실행하세요.`);
+  if (!d.published && onDisk) fail(`${d.label}: 비공개(published=false)인데 static/${d.file} 이 있어 공개될 수 있습니다.`);
+}
 const contact = decisions.contact;
 if (contact.value && !isFinal(contact)) fail("연락 수단은 status를 \"확정\"으로 바꾼 뒤에만 넣을 수 있습니다.");
 
@@ -51,7 +57,7 @@ const menu = [
   ["story", "01", "이야기"],
   ["records", "02", "기록"],
   ["works", "03", "대표작"],
-  ["about", "04", "이력"],
+  ["documents", "04", "이력서"],
 ];
 
 const heroCard = `
@@ -277,10 +283,17 @@ const contactHtml =
     : `<span class="contact__value contact__value--pending">공개할 연락 수단 확정 후 입력</span>`;
 
 const docsCard = `
-<section class="card card--docs" aria-labelledby="contact-title">
+<section class="card card--docs" aria-labelledby="documents-title">
   <div class="docs">
-    <p class="eyebrow">Works &amp; Contact · 지나온 작업과 연락</p>
-    <h2 id="contact-title" class="section-title">지금까지 만든 것들과<br>연락할 곳입니다.</h2>
+    <p class="eyebrow">Documents · 문서와 연락</p>
+    <h2 id="documents-title" class="section-title">함께 일할 때 필요한 정보는<br>문서로 정리했습니다.</h2>
+    <ul class="doc-list">${docs
+      .map(([, d]) =>
+        d.published
+          ? `<li><a class="doc" href="${esc(d.file)}" download="${esc(d.downloadName ?? "")}"><span>${esc(d.label)}</span><span class="doc__meta">DOCX 다운로드 · ${kb(join(ROOT, "static", d.file))}</span></a></li>`
+          : `<li><span class="doc doc--pending" aria-disabled="true"><span>${esc(d.label)}</span><span class="doc__meta">준비 중</span></span></li>`
+      )
+      .join("")}</ul>
     <div class="past-works">
       <p class="past-works__label">지나온 작업</p>
       <ul>
@@ -332,7 +345,7 @@ ${storyOpenCard}
 ${chapterCards}
 <span id="records" class="anchor"></span>
 ${evidenceCard}
-<span id="contact" class="anchor"></span>
+<span id="documents" class="anchor"></span>
 ${docsCard}
 </main>
 </body>
