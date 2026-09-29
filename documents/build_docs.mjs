@@ -102,31 +102,39 @@ const draftNote = [decisions.heroLine, decisions.storyFirstSentence, decisions.s
   : [];
 
 // ------------------------------------------------------------ 과제 목록 (경력기술서·이력서 공용)
-// 근거: 기존 포트폴리오(seulgi-portfolio-henna.vercel.app)의 Dev/Projects, 각 과제 폴더의 README·CHECK·SUBMISSION,
+// 근거: 본인 이력서(저장소 제외), 기존 포트폴리오(seulgi-portfolio-henna.vercel.app)의 Dev/Projects, 각 과제 폴더의 README·CHECK·SUBMISSION,
 //       10번 논문 README, 리추얼 기록
 const tasks = [
   {
-    id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
+    id: "팀", name: "GOING (실시간 스트리밍 서비스)", period: "2026.01 ~ 진행 중 · 팀 5인",
     ability: "대인관계력",
+    stack: "Spring Boot, React, JPA, Scheduler, RTMP, HLS",
+    situation: "OBS 송출·RTMP ingest·HLS 재생을 쓰는 서비스에서 사용자 화면과 실제 송출 상태의 기준이 어긋날 수 있었다.",
+    action: "방송 상태를 OFF/READY/LIVE/ENDED로 구조화해 화면과 스트리밍 흐름의 기준을 맞추고, stale timeout 스케줄러로 종료 이벤트가 누락돼도 LIVE가 남지 않게 했다. UUID 기반 스트림 키 발급·조회·재발급을 구현했다.",
+    result: "진행 중. 팀이 같은 상태 기준으로 송출·재생 흐름을 다룰 수 있게 정리했다.",
+  },
+  {
+    id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
+    ability: "자기조절력 · 대인관계력",
     stack: "React, JavaScript, Kakao Maps API, Spring Boot, MyBatis, MySQL",
     situation: "4인 팀이 러닝 기록을 저장하고 피드에 공유하는 플랫폼을 만들어야 했다.",
-    action: "카카오맵 API 기반 위치 시각화 피드 화면 구현을 주도하고, 최종 발표를 맡았다.",
-    result: "프로젝트 완료. 소스 공개(github.com/Zone2Maker/RunnersHigh-readme).",
+    action: "카카오맵 API 기반 위치 시각화 피드 화면 구현을 주도하고, 최종 발표를 맡았다. 국비 과정·자격증 공부와 병행하며 잠을 줄여 시간을 쏟았지만, 다른 팀원의 로직을 충분히 이해하지 못해 원인 추적에 오래 걸렸다.",
+    result: "프로젝트 완료. 이후 문제·원인·해결 과정을 Notion에 정리해 팀과 공유하고, '돌아가는 코드'보다 '이해하고 쓰는 코드'를 목표로 삼았다. 소스 공개(github.com/Zone2Maker/RunnersHigh-readme).",
   },
   {
     id: "팀", name: "OMIJOY (공연 통합 플랫폼)", period: "2025.10.29 ~ 2025.12.10 · 팀 5인",
     ability: "대인관계력",
     stack: "React, TypeScript, Java, Spring Boot, MariaDB, Figma",
     situation: "5인 팀이 공연 정보 탐색과 예매 연계를 지원하는 플랫폼을 처음부터 구성해야 했다.",
-    action: "초기 파일·라우터 구조를 설계하고, 관심 공연 스크랩 기능을 이식했으며, Firebase Storage 기반 프로필 이미지 업로드를 구현하고 초기 발표를 맡았다.",
-    result: "프로젝트 완료. 소스 공개(github.com/Team-OMIJA).",
+    action: "초기 파일·라우터 구조를 정리하고 Figma 와이어프레임으로 공통 구현 기준을 마련했다. 관심 공연 스크랩 기능을 이식·확장하고, 페이지형 상세 화면의 지연 저장, Firebase Storage 프로필 이미지 업로드를 구현했으며, 반복되는 상태 로직은 React Query와 커스텀 훅으로 분리했다. 발표 자료를 만들고 초기 발표를 맡았다.",
+    result: "프로젝트 완료. 페이지별로 나눠 구현한 같은 기능의 로직이 달라지는 문제를 겪으며, 설계 단계의 사전 합의와 인터페이스 정의가 중요하다는 기준을 얻었다. 소스 공개(github.com/Team-OMIJA).",
   },
   {
-    id: "개인", name: "MU:ZIN (클래식 악기 레슨 예약 플랫폼)", period: "2026.01.01 ~ 2026.03.08 · 진행 중",
+    id: "개인", name: "MU:ZIN (클래식 악기 레슨 예약 플랫폼)", period: "2025.12 ~ 진행 중",
     ability: "자기동기력",
-    stack: "React, TypeScript, React Query, Zustand, Spring Boot, JPA, PostgreSQL",
-    situation: "레슨 예약 과정의 정보 비대칭 문제를 개선하고 싶었다.",
-    action: "반복 규칙 기반 타임슬롯 자동 생성과 상태 분리로 예약 충돌을 막고, OAuth2·JWT 기반 권한 처리를 구현했다.",
+    stack: "React, TypeScript, React Query, Zustand, Java, Spring Boot, Spring Security, JPA, QueryDSL, PostgreSQL",
+    situation: "레슨 예약 과정의 정보 비대칭 문제를 개선하는 레슨·매칭 플랫폼을 프론트엔드부터 백엔드까지 직접 설계·구현했다.",
+    action: "반복 규칙 기반 타임슬롯 자동 생성과 OPEN/CLOSED/BOOKED 상태 분리로 예약 충돌을 막았다. QueryDSL로 악기·레슨 스타일·시간 조건을 조합하는 동적 검색을 만들고, 서버 상태는 React Query, UI 상태는 Zustand로 나눴으며, OAuth2·JWT로 일반 사용자와 아티스트 권한을 분리했다.",
     result: "진행 중. 소스 공개(github.com/Lui-die-lui/MU-ZIN_frontend).",
   },
   {
@@ -197,14 +205,17 @@ const tasks = [
 
 // ------------------------------------------------------------ 회사·교습 경력 (기존 포트폴리오 공개 내용 기준)
 const workHistory = [
-  ["2025.02 ~ 2025.06", "골든보이 · 웹디자이너", "CAFE24 기반 자사몰 운영 및 웹 콘텐츠 유지보수"],
-  ["2023.02 ~ 2024.12", "인더슈(슈파티) · 웹 디자이너·사원", "자사몰 상세 페이지·메인 배너 기획 및 디자인, CAFE24·EZAdmin 기반 자사몰 관리, 쿠팡·G마켓·11번가 등 오픈마켓·소셜커머스 세팅 및 상세 디자인"],
-  ["2020.09 ~ 2023.01", "루이 아트테인먼트", "네이버 스토어 운영, 상세 페이지 제작, 주얼리·잡화 디자인·제작 및 판매"],
+  ["2023.02 ~ 2024.12", "인더슈(슈파티) · 웹 디자이너·사원", "자사몰 의류·슈즈 상세 작업 및 업로드, 메인 배너 기획·디자인, CAFE24·EZAdmin 자사몰 관리, 쿠팡 보조 업무 및 G마켓·11번가 딜 세팅 전담, 상세 페이지 기획·디자인"],
+];
+const otherWork = [
+  ["2025.02 ~ 2025.06", "골든보이 · 아르바이트", "웹 디자인 업무 및 자사몰 유지보수"],
+  ["2020.09 ~ 2023.01", "루이 아트테인먼트 · 사회활동", "네이버 스토어 운영, 상세 페이지 제작, 주얼리·잡화 디자인·제작 및 판매"],
 ];
 const teachingHistory = [
   ["2019.03 ~ 2024.12", "바젤 음악학원 · 강사", "이론 지도 및 담당 악기 교습"],
   ["2021.03 ~ 2021.12", "개림중학교 오케스트라 · 방과후교사", "오케스트라 지휘 및 학생 관리"],
-  ["2019.03 ~ 2021.08", "중부초등학교·서창중학교 관악부 · 방과후교사", "관악부 담당 악기 교습 및 학생 관리"],
+  ["2020.07 ~ 2021.08", "서창중학교 관악부 · 방과후교사", "관악부 담당 악기 교습 및 학생 관리"],
+  ["2019.03 ~ 2021.08", "중부초등학교 관악부 · 방과후교사", "관악부 담당 악기 교습 및 학생 관리"],
 ];
 
 // ------------------------------------------------------------ 이력서
@@ -222,11 +233,13 @@ const resume = doc("이력서", [
   h1("학력"),
   table([2600, CONTENT_W - 2600], [
     ["기간", "내용"],
-    ["[확인 필요 #2 졸업 연도]", "동의대학교 음악 전공 (플루트)"],
+    ["2015.03 ~ 2019.08", "동의대학교(4년제) 음악학과 졸업 (플루트 전공)"],
   ]),
 
   h1("경력 · 웹디자인"),
   table([2200, 3000, CONTENT_W - 5200], [["기간", "회사 · 직무", "담당 업무"], ...workHistory]),
+  h2("관련 활동"),
+  table([2200, 3000, CONTENT_W - 5200], [["기간", "구분", "내용"], ...otherWork]),
 
   h1("경력 · 음악 교육"),
   table([2200, 3000, CONTENT_W - 5200], [["기간", "기관 · 직무", "담당 업무"], ...teachingHistory]),
@@ -235,7 +248,7 @@ const resume = doc("이력서", [
   table([2600, CONTENT_W - 2600], [
     ["기간", "내용"],
     ["2026.08.11 ~ 진행 중", "ALEPH 과정 · AX 인프라 (시작일은 리추얼 기록 기준) [확인 필요 #4 공식 과정명·기관·종료일]"],
-    ["2025.07 ~ 2025.12", "빅데이터·클라우드 SaaS 기반 ERP 개발 과정 수료 · 코리아 IT 아카데미"],
+    ["2025.07 ~ 2025.12", "빅데이터 활용 클라우드 SaaS 기반 시니어케어 ERP 개발 과정 수료 · 코리아 IT 아카데미 (국민내일배움카드)"],
     ["2025.04 ~ 2025.10", "웹개발 과정 수료 · 코리아 IT 아카데미"],
   ]),
 
@@ -250,10 +263,10 @@ const resume = doc("이력서", [
   ]),
 
   h1("음악 활동 · 수상"),
-  bullet("2023.06 ~ 현재 부산 에코 플루트 앙상블 단원 · 주니어 에코 플루트 앙상블 지도 강사"),
+  bullet("2023.06 ~ 2025.12 부산 에코 플루트 앙상블 단원 (전공 교수 추진 앙상블)"),
   bullet("2022.10 제1회 리사이틀(독주회) · 한국예술인복지재단 사업 선정 및 연주 기획"),
   bullet("2017 부산 교향악 축제 협연"),
-  bullet("2015.05 ~ 2018.12 부산 플루트 유스 앙상블 (2018년 악장)"),
+  bullet("2015.05 ~ 2018.12 부산 플루트 유스 앙상블 · 전공자·비전공자와 매주 연습 및 봉사 연주 (2018년 악장, 단체·단원 관리)"),
   bullet("부산청년 오케스트라 단원 · Seoul International Music Camp 수료"),
   bullet("2016.06 제28회 예진 서울음악콩쿠르 입상 · 부산음악협회 콩쿠르 1위 및 다수 입상"),
   bullet("2013.04 제40회 전국학생음악경연대회 · 2012.10 제48회 경남 종합학예대회 우수상"),
@@ -261,9 +274,10 @@ const resume = doc("이력서", [
   h1("기술"),
   table([2600, CONTENT_W - 2600], [
     ["분야", "기술 (기존 포트폴리오 기준)"],
-    ["Frontend", "React, Next.js, TypeScript, JavaScript, Emotion, Tailwind CSS, TanStack Query, Zustand"],
-    ["Backend", "Java, Spring Boot, Spring Security, Spring Data JPA, QueryDSL, MyBatis, OAuth2"],
+    ["Frontend", "React, Next.js, TypeScript, JavaScript, JSX, HTML5, CSS3, Emotion, Tailwind CSS, React Query(TanStack Query), React Router, Zustand"],
+    ["Backend", "Java, Spring Boot, Spring Security, Spring Data JPA, QueryDSL, MyBatis, OAuth2, SockJS"],
     ["Database · Infra", "PostgreSQL, MariaDB, MySQL, Prisma, Supabase, Firebase, Vercel"],
+    ["Tools", "IntelliJ IDEA, VSCode, DBeaver, Postman, GitHub"],
     ["Design", "Photoshop(실무), Illustrator, Figma"],
   ]),
 
@@ -325,7 +339,7 @@ for (const t of tasks) {
 }
 careerChildren.push(h1("회사 경력 요약"));
 careerChildren.push(muted("회사 경력은 기존 포트폴리오에 공개한 기간·담당 업무만 적었습니다. 정량 성과는 확인되지 않아 쓰지 않았습니다."));
-careerChildren.push(table([2200, 3000, CONTENT_W - 5200], [["기간", "회사 · 직무", "담당 업무"], ...workHistory, ...teachingHistory]));
+careerChildren.push(table([2200, 3000, CONTENT_W - 5200], [["기간", "회사 · 직무", "담당 업무"], ...workHistory, ...otherWork, ...teachingHistory]));
 const career = doc("경력기술서", careerChildren);
 
 // ------------------------------------------------------------ 쓰기

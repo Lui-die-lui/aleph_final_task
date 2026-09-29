@@ -90,9 +90,9 @@ const aboutCard = `
 </section>`;
 
 const abilityLegend = [
-  ["01", "자기조절력", "중요한 일을 지속하기 위해 우선순위를 다시 정합니다."],
-  ["02", "대인관계력", "서로 다른 생각을 작업 가능한 기준으로 맞춥니다."],
-  ["03", "자기동기력", "낯선 분야에서도 배우고 결과물을 남깁니다."],
+  ["01", "자기조절력", "여러 일이 겹치면 시급성보다 중요도로 우선순위를 다시 정하고, 오래 지속할 수 있는 속도를 지킵니다."],
+  ["02", "대인관계력", "구현 전에 화면과 코드의 기준을 먼저 맞추고, 해결한 문제는 원인과 과정을 기록해 팀과 공유합니다."],
+  ["03", "자기동기력", "음악에서 디자인, 개발로 영역을 넓혀 왔고, '돌아가는 코드'보다 '이해하고 쓰는 코드'를 목표로 배웁니다."],
 ];
 
 const storyOpenCard = `
@@ -286,8 +286,11 @@ const docsCard = `
       <ul>
         ${profile.works.map((w) => {
           // 링크 종류를 주소로 구분해 밝힌다: GitHub 저장소 / 배포된 사이트
+          const body = `<span class="past-works__name">${esc(w.name)}</span><span class="past-works__meta">${esc(w.kind)} · ${esc(w.period)}</span><span class="past-works__summary">${esc(w.summary)}</span>`;
+          // 공개 링크가 없는 작업(진행 중인 팀 프로젝트 등)은 링크 없이 보여 준다.
+          if (!w.href) return `<li><div class="past-works__item">${body}<span class="past-works__link past-works__link--none">${esc(w.noLink ?? "공개 링크 없음")}</span></div></li>`;
           const linkType = /^https:\/\/github\.com\//.test(w.href) ? "GitHub 저장소" : "사이트 보기";
-          return `<li><a href="${esc(w.href)}" target="_blank" rel="noopener"><span class="past-works__name">${esc(w.name)}</span><span class="past-works__meta">${esc(w.kind)} · ${esc(w.period)}</span><span class="past-works__summary">${esc(w.summary)}</span><span class="past-works__link">${linkType} ↗<span class="sr-only"> (새 창)</span></span></a></li>`;
+          return `<li><a href="${esc(w.href)}" target="_blank" rel="noopener">${body}<span class="past-works__link">${linkType} ↗<span class="sr-only"> (새 창)</span></span></a></li>`;
         }).join("")}
       </ul>
     </div>

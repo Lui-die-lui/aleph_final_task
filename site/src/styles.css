@@ -151,12 +151,13 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.04em; line-height: 
 .past-works { margin: 0 0 2.4rem; }
 .past-works__label { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 0.6rem; }
 .past-works ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 24px; border-top: 1px solid var(--line); }
-.past-works a { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; line-height: 1.45; }
+.past-works a, .past-works__item { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; line-height: 1.45; }
 .past-works a:hover .past-works__link { text-decoration: underline; }
 .past-works__name { font-weight: 700; font-size: 0.98rem; }
 .past-works__meta { font-size: 0.74rem; color: var(--faint); }
 .past-works__summary { font-size: 0.82rem; color: var(--muted); }
 .past-works__link { margin-top: 4px; font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+.past-works__link--none { color: var(--faint); font-weight: 500; }
 .facts { margin: 2rem 0 0; border-top: 1px solid var(--line); }
 .facts div {
   display: grid; grid-template-columns: 8em 1fr; gap: 16px;

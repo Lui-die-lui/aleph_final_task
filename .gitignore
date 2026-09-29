@@ -7,6 +7,11 @@
 ritual-history-*.json
 *장편소설*.md
 *소설*.md
+# 폴더 맨 위에 둔 개인 문서(이력서 PDF 등). site/static/files의 논문 PDF는 제외 대상 아님
+/*.pdf
+/*.docx
+/*.hwp
+/*.hwpx
 T10_multipotential_transfer_submission.zip
 image/
 updater/inputs/*
