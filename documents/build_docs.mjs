@@ -104,31 +104,47 @@ const draftNote = [decisions.heroLine, decisions.storyFirstSentence, decisions.s
 
 // ------------------------------------------------------------ 과제 목록 (경력기술서·이력서 공용)
 // 근거: 본인 이력서(저장소 제외), 기존 포트폴리오(seulgi-portfolio-henna.vercel.app)의 Dev/Projects, 각 과제 폴더의 README·CHECK·SUBMISSION,
-//       10번 논문 README, 리추얼 기록
+//       이전 LaTeX 경력기술서(본인 제공, GOING·연락처 제외), 10번 논문 README, 리추얼 기록
 const tasks = [
+  {
+    id: "실무", name: "자사몰 운영 및 웹디자인 실무 (인더슈)", period: "2023.02 ~ 2024.12",
+    ability: "대인관계력",
+    stack: "Photoshop, Illustrator, Figma, CAFE24, EZAdmin",
+    situation: "디자인과 운영을 함께 맡아 자사몰과 여러 오픈마켓을 동시에 관리해야 했고, HTML을 아는 사람이 거의 없어 이미지 삽입 위주로 자사몰과 파일이 비효율적으로 관리되고 있었다.",
+    action: "CAFE24·EZAdmin 기반으로 자사몰을 운영하며 의류·슈즈 상세 페이지와 메인·프로모션 배너를 기획·디자인하고, G마켓·11번가 딜 세팅을 전담했다. 운영 담당자와의 협업과 사용자 경험을 고려해 상세 페이지를 설계했고, 회사 간 사업 추진을 위한 물류 프로세스를 기획해 PPT로 정리했다.",
+    result: "디자인 제작부터 상품 운영·프로모션 반영·판매 채널 관리까지 수행했고, 물류 프로세스 정리로 계약 추진에 기여했다. 구조적인 문제는 디자인만으로 풀 수 없다는 한계를 느껴 회사에 다니며 DBMS와 웹 개발 수업을 병행하기 시작했다.",
+  },
   {
     id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
     ability: "자기조절력 · 대인관계력",
     stack: "React, JavaScript, Kakao Maps API, Spring Boot, MyBatis, MySQL",
     situation: "4인 팀이 러닝 기록을 저장하고 피드에 공유하는 플랫폼을 만들어야 했다.",
     action: "카카오맵 API 기반 위치 시각화 피드 화면 구현을 주도하고, 최종 발표를 맡았다. 국비 과정·자격증 공부와 병행하며 잠을 줄여 시간을 쏟았지만, 다른 팀원의 로직을 충분히 이해하지 못해 원인 추적에 오래 걸렸다.",
-    result: "프로젝트 완료. 이후 문제·원인·해결 과정을 Notion에 정리해 팀과 공유하고, '돌아가는 코드'보다 '이해하고 쓰는 코드'를 목표로 삼았다. 소스 공개(github.com/Zone2Maker/RunnersHigh-readme).",
+    result: "프로젝트 완료. 서비스 흐름과 구현 내용을 정리해 최종 발표했다. 이후 문제·원인·해결 과정을 Notion에 정리해 팀과 공유하고, '돌아가는 코드'보다 '이해하고 쓰는 코드'를 목표로 삼았다. Repository: github.com/Zone2Maker/RunnersHigh-readme",
   },
   {
     id: "팀", name: "OMIJOY (공연 통합 플랫폼)", period: "2025.10.29 ~ 2025.12.10 · 팀 5인",
     ability: "대인관계력",
-    stack: "React, TypeScript, Java, Spring Boot, MariaDB, Figma",
-    situation: "5인 팀이 공연 정보 탐색과 예매 연계를 지원하는 플랫폼을 처음부터 구성해야 했다.",
-    action: "초기 파일·라우터 구조를 정리하고 Figma 와이어프레임으로 공통 구현 기준을 마련했다. 관심 공연 스크랩 기능을 이식·확장하고, 페이지형 상세 화면의 지연 저장, Firebase Storage 프로필 이미지 업로드를 구현했으며, 반복되는 상태 로직은 React Query와 커스텀 훅으로 분리했다. 발표 자료를 만들고 초기 발표를 맡았다.",
-    result: "프로젝트 완료. 페이지별로 나눠 구현한 같은 기능의 로직이 달라지는 문제를 겪으며, 설계 단계의 사전 합의와 인터페이스 정의가 중요하다는 기준을 얻었다. 소스 공개(github.com/Team-OMIJA).",
+    stack: "React, TypeScript, Zustand, React Query, Java, Spring Boot, MariaDB, Firebase Storage, Figma, Canva",
+    situation: "5인 팀이 공연 정보 탐색, 공연장 확인, 예매처 이동, 관심 공연·공연장 저장 기능을 갖춘 플랫폼을 처음부터 구성해야 했다. 프론트엔드 중심으로 참여했다.",
+    action: "프로젝트 초기에 파일·라우터 구조를 정리하고 Figma 와이어프레임을 만들어 팀원들과 구현 기준을 공유했다. 공연 favorite·공연장 flag 기능을 서비스 흐름에 맞게 이식·확장하고, 모달 중심이던 지연 저장 방식을 페이지형 상세 화면에서도 동작하게 구현했다. Firebase Storage 프로필 이미지 업로드를 구현하고, 반복되는 상태 로직은 React Query와 커스텀 훅으로 분리했다. 초기·최종 발표 자료를 만들고 초기 발표를 맡았다.",
+    result: "프로젝트 완료. 페이지별로 나눠 구현한 같은 기능의 로직이 달라지는 문제를 겪으며, 설계 단계의 사전 합의와 인터페이스 정의가 중요하다는 기준을 얻었다. Repository: github.com/Team-OMIJA",
   },
   {
-    id: "개인", name: "MU:ZIN (클래식 악기 레슨 예약 플랫폼)", period: "2025.12 ~ 진행 중",
+    id: "개인", name: "MU:ZIN (음악 아티스트 매칭·레슨 플랫폼)", period: "2025.12 ~ 진행 중",
     ability: "자기동기력",
     stack: "React, TypeScript, React Query, Zustand, Java, Spring Boot, Spring Security, JPA, QueryDSL, PostgreSQL",
-    situation: "레슨 예약 과정의 정보 비대칭 문제를 개선하는 레슨·매칭 플랫폼을 프론트엔드부터 백엔드까지 직접 설계·구현했다.",
+    situation: "레슨 예약 과정의 정보 비대칭 문제를 개선하려고, 음악 전공자·아티스트를 위한 레슨·매칭 플랫폼(아티스트 인증, 레슨 생성, 타임슬롯 예약, 알림·채팅)을 React + TypeScript 프론트엔드와 Spring Boot 백엔드로 직접 설계·구현했다.",
     action: "반복 규칙 기반 타임슬롯 자동 생성과 OPEN/CLOSED/BOOKED 상태 분리로 예약 충돌을 막았다. QueryDSL로 악기·레슨 스타일·시간 조건을 조합하는 동적 검색을 만들고, 서버 상태는 React Query, UI 상태는 Zustand로 나눴으며, OAuth2·JWT로 일반 사용자와 아티스트 권한을 분리했다.",
-    result: "진행 중. 소스 공개(github.com/Lui-die-lui/MU-ZIN_frontend).",
+    result: "진행 중. 레슨·타임슬롯·예약 도메인을 중심으로 확장 가능한 구조를 설계하고, 공통화 기준을 명확히 해 중복 로직과 사이드이펙트를 줄였다. query key를 도메인별로 관리해 캐시 무효화 흐름을 정리했다. Repository: FE github.com/Lui-die-lui/MU-ZIN_frontend · BE github.com/Lui-die-lui/MU-ZIN_backend",
+  },
+  {
+    id: "개인", name: "개인 학습 프로젝트 (핵심 개념 분리 학습)", period: "2025.12 ~ 진행 중",
+    ability: "자기동기력",
+    stack: "React, TypeScript, Spring Boot, JPA, PostgreSQL",
+    situation: "팀 프로젝트에서 이해하지 못한 채 쓴 코드 때문에 같은 문제를 반복해서 푸는 데 시간을 썼다. 실무 프로젝트에 바로 적용할 수 있을 만큼 핵심 개념을 이해할 필요가 있었다.",
+    action: "상태 관리, 인증, 트랜잭션 처리 등 핵심 개념을 분리해 학습하고, 단순 기능 구현이 아니라 '왜 이런 구조가 필요한지'를 정리했다. 학습 중 트러블슈팅과 설계 고민을 기술 블로그와 Notion에 기록했다.",
+    result: "정리한 내용을 MU:ZIN의 상태 관리·인증 구조에 다시 적용하고 있다.",
   },
   {
     id: "개인", name: "ODYSSEY PLAN (AI 5년 계획 서비스)", period: "2026.03.20 ~ 2026.03.24",
@@ -277,7 +293,7 @@ const resume = doc("이력서", [
   h1("프로젝트 · 과제"),
   table([1500, 4100, CONTENT_W - 5600], [
     ["구분", "프로젝트", "사용 기술"],
-    ...tasks.filter((t) => !t.name.startsWith("과정 중 조별 활동")).map((t) => [t.id, `${t.name}\n${t.period}`, t.stack]),
+    ...tasks.filter((t) => !t.name.startsWith("과정 중 조별 활동") && t.id !== "실무").map((t) => [t.id, `${t.name}\n${t.period}`, t.stack]),
     ["BR-A", "공개 포트폴리오와 기록 갱신 장치", "정적 HTML/CSS/JS, Node 빌드, Python"],
   ]),
 ]);
