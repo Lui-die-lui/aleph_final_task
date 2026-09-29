@@ -1,5 +1,5 @@
 ---
-status: 후보
+status: 확정 (2026-09-29 본인 확정)
 basis: text.md 원문, 기존 포트폴리오(seulgi-portfolio-henna.vercel.app)의 이력, 리추얼 기록(2026-08-11~2026-09-29), 10번 논문 README. 소설 원고 대조 전.
 note: 첫 문장·마지막 문장은 author-decisions.json에서 읽어 앞뒤에 붙습니다. 이 파일은 사이트와 자기소개서가 함께 씁니다.
 ---

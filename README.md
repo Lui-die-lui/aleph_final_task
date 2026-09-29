@@ -34,4 +34,4 @@ python tools/privacy_scan.py site/dist deliverables   # 공개물 검사
 2. Vercel에서 저장소를 가져오고 **Root Directory를 `site`** 로 지정합니다. 빌드 설정은 `site/vercel.json`(빌드 `npm run build`, 출력 `dist`)을 따릅니다.
 3. 배포 주소를 새 시크릿 창에서 열어 로그인 없이 보이는지, "PDF 보기"·"PDF 다운로드"가 동작하는지 확인합니다.
 
-배포 전에 `author-decisions.json`에서 문구를 확정하세요. 후보 상태가 하나라도 있으면 페이지에 "후보 문구 · 확정 전" 표시와 `noindex`가 붙습니다.
+`author-decisions.json`의 문구는 모두 확정 상태입니다. 나중에 `status`가 "확정"이 아닌 항목이 생기면 페이지에 `noindex`가 붙습니다.
