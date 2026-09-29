@@ -24,13 +24,13 @@
     },
     {
       "period": "2025.04–2025.12",
-      "title": "웹개발 · ERP 개발 과정 수료",
+      "title": "웹개발 과정 수강 · ERP 개발 과정 수료",
       "detail": "코리아 IT 아카데미"
     },
     {
-      "period": "2026.03",
-      "title": "SQLD 최종합격",
-      "detail": "한국데이터베이스진흥센터"
+      "period": "2026.03 · 08",
+      "title": "SQLD · 컴퓨터활용능력 2급 최종합격",
+      "detail": "한국데이터베이스진흥센터 · 대한상공회의소"
     },
     {
       "period": "2026.08–",
@@ -57,6 +57,13 @@
     }
   ],
   "works": [
+    {
+      "name": "LUI ARCHIVE",
+      "kind": "개인 · 첫 포트폴리오",
+      "period": "2026.04",
+      "summary": "처음 만든 포트폴리오 사이트 (관리자 대시보드·방명록)",
+      "href": "https://lui-archive.vercel.app/"
+    },
     {
       "name": "ODYSSEY PLAN",
       "kind": "개인",

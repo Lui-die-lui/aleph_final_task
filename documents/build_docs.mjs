@@ -120,7 +120,7 @@ const tasks = [
     stack: "CAFE24, Photoshop, HTML",
     situation: "HTML을 아는 사람이 거의 없어 자사몰이 단순 이미지 삽입 위주로 운영되고, 이미지와 파일이 비효율적으로 관리되고 있었다. 이전 회사는 이미지를 올리고 링크만 넣으면 정리되는 구조였다.",
     action: "웹 디자인 업무와 자사몰 유지보수를 하면서, 설계 차이가 운영 효율을 바꾼다는 점을 확인하고 회사에 다니며 DBMS와 웹 개발 수업을 병행했다.",
-    result: "디자인 결과물만으로는 구조적인 문제를 풀 수 없다는 판단으로 웹 개발에 전념하기로 했고, 2025년 웹개발 과정과 ERP 개발 과정을 수료했다.",
+    result: "디자인 결과물만으로는 구조적인 문제를 풀 수 없다는 판단으로 웹 개발에 전념하기로 했고, 2025년 웹개발 과정을 수강하고 ERP 개발 과정을 수료했다.",
   },
   {
     id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
@@ -135,7 +135,7 @@ const tasks = [
     ability: "대인관계력",
     stack: "React, TypeScript, Zustand, React Query, Java, Spring Boot, MariaDB, Firebase Storage, Figma, Canva",
     situation: "5인 팀이 공연 정보 탐색, 공연장 확인, 예매처 이동, 관심 공연·공연장 저장 기능을 갖춘 플랫폼을 처음부터 구성해야 했다. 프론트엔드 중심으로 참여했다.",
-    action: "프로젝트 초기에 파일·라우터 구조를 정리하고 Figma 와이어프레임을 만들어 팀원들과 구현 기준을 공유했다. 공연 favorite·공연장 flag 기능을 서비스 흐름에 맞게 이식·확장하고, 모달 중심이던 지연 저장 방식을 페이지형 상세 화면에서도 동작하게 구현했다. Firebase Storage 프로필 이미지 업로드를 구현하고, 반복되는 상태 로직은 React Query와 커스텀 훅으로 분리했다. 초기·최종 발표 자료를 만들고 초기 발표를 맡았다.",
+    action: "프로젝트 초기에 파일·라우터 구조를 정리하고 Figma 와이어프레임을 만들어 팀원들과 구현 기준을 공유했다. 공연 favorite·공연장 flag 기능을 서비스 흐름에 맞게 이식·확장하고, 모달 중심이던 지연 저장 방식을 페이지형 상세 화면에서도 동작하게 구현했다. Firebase Storage 프로필 이미지 업로드를 구현하고, 반복되는 상태 로직은 React Query와 커스텀 훅으로 분리했다. KOPIS API 기반 공연 정보 서비스에 가입자 수·페이지 방문 수·스크랩 수를 보는 관리자 대시보드를 구성하고, 스크랩 수가 높은 공연을 메인 배너에 노출하는 운영 방향을 고민했다. 초기·최종 발표 자료를 만들고 초기 발표를 맡았다.",
     result: "프로젝트 완료. 페이지별로 나눠 구현한 같은 기능의 로직이 달라지는 문제를 겪으며, 설계 단계의 사전 합의와 인터페이스 정의가 중요하다는 기준을 얻었다. Repository: github.com/Team-OMIJA",
   },
   {
@@ -143,7 +143,7 @@ const tasks = [
     ability: "자기동기력",
     stack: "React, TypeScript, React Query, Zustand, Java, Spring Boot, Spring Security, JPA, QueryDSL, PostgreSQL",
     situation: "레슨 예약 과정의 정보 비대칭 문제를 개선하려고, 음악 전공자·아티스트를 위한 레슨·매칭 플랫폼(아티스트 인증, 레슨 생성, 타임슬롯 예약, 알림·채팅)을 React + TypeScript 프론트엔드와 Spring Boot 백엔드로 직접 설계·구현했다.",
-    action: "반복 규칙 기반 타임슬롯 자동 생성과 OPEN/CLOSED/BOOKED 상태 분리로 예약 충돌을 막았다. QueryDSL로 악기·레슨 스타일·시간 조건을 조합하는 동적 검색을 만들고, 서버 상태는 React Query, UI 상태는 Zustand로 나눴으며, OAuth2·JWT로 일반 사용자와 아티스트 권한을 분리했다.",
+    action: "반복 규칙 기반 타임슬롯 자동 생성과 OPEN/CLOSED/BOOKED 상태 분리로 예약 충돌을 막았다. QueryDSL로 악기·레슨 스타일·시간 조건을 조합하는 동적 검색을 만들고, 서버 상태는 React Query, UI 상태는 Zustand로 나눴으며, OAuth2·JWT로 일반 사용자와 아티스트 권한을 분리했다. 예약 요청·확정·완료·알림으로 이어지는 상태 흐름을 화면과 데이터베이스에 연결했고, AI 도구는 참고하되 핵심 로직은 직접 이해하며 구현했다.",
     result: "진행 중. 레슨·타임슬롯·예약 도메인을 중심으로 확장 가능한 구조를 설계하고, 공통화 기준을 명확히 해 중복 로직과 사이드이펙트를 줄였다. query key를 도메인별로 관리해 캐시 무효화 흐름을 정리했다. Repository: FE github.com/Lui-die-lui/MU-ZIN_frontend · BE github.com/Lui-die-lui/MU-ZIN_backend",
   },
   {
@@ -155,12 +155,20 @@ const tasks = [
     result: "정리한 내용을 MU:ZIN의 상태 관리·인증 구조에 다시 적용하고 있다.",
   },
   {
+    id: "개인", name: "LUI ARCHIVE (처음 만든 포트폴리오 사이트)", period: "2026.04.03 ~ 2026.04.04",
+    ability: "자기조절력",
+    stack: "Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, Prisma",
+    situation: "처음으로 직접 포트폴리오 사이트를 만들며, 프로젝트·기술 스택·이력을 코드 수정 없이 관리하고 공개 방명록을 운영할 수 있게 하고 싶었다.",
+    action: "관리자가 프로젝트·기술 스택·이력 사항을 직접 추가·수정·삭제할 수 있게 구성하고, 방문자 수 확인과 방명록 삭제·일시 중단 기능을 구현했다.",
+    result: "완료·배포(lui-archive.vercel.app). 공개 기능에 운영 리스크를 제어할 장치를 함께 두는 기준을 적용했다.",
+  },
+  {
     id: "개인", name: "ODYSSEY PLAN (AI 5년 계획 서비스)", period: "2026.03.20 ~ 2026.03.24",
     ability: "자기동기력",
     stack: "Next.js, TypeScript, Tailwind CSS, Recharts, OpenAI, PostgreSQL, Prisma",
-    situation: "AI 인터뷰 응답을 바탕으로 5년 계획과 요약 결과를 만드는 서비스를 개인 프로젝트로 기획했다.",
-    action: "인터뷰 응답 수집부터 계획 생성·요약 결과 화면까지 기획하고 구현했다.",
-    result: "완료·배포(odyssey-plan-studio-vzqt.vercel.app).",
+    situation: "사용자의 인터뷰 응답을 OpenAI API로 분석·요약해 5년 계획과 요약 결과를 만드는 서비스를 개인 프로젝트로 기획했다. AI API 특성상 과도한 요청이 비용 문제로 이어질 수 있었다.",
+    action: "응답 수집부터 계획 생성·요약 결과 화면까지 구현하고, 월 사용 한도와 사용자별 요청 횟수 확인 기능을 두었다. 이상 요청이 확인되면 개인의 AI 사용을 제한하거나 전체 AI 기능을 일시 중단할 수 있는 관리자 제어 기능을 구현했다.",
+    result: "완료·배포(odyssey-plan-studio-vzqt.vercel.app). AI 기능은 적용뿐 아니라 사용량과 운영 비용을 함께 관리해야 한다는 기준을 얻었다.",
   },
   {
     id: "T01", name: "나를 소개하는 한 페이지", period: "2026",
@@ -292,13 +300,14 @@ const resume = doc("이력서", [
   table([2600, CONTENT_W - 2600], [
     ["기간", "내용"],
     ["2026.08.11 ~ 진행 중", "ALEPH 과정 · AX 인프라 (리추얼 기록 기준 시작일)"],
-    ["2025.07 ~ 2025.12", "빅데이터 활용 클라우드 SaaS 기반 시니어케어 ERP 개발 과정 수료 · 코리아 IT 아카데미 (국민내일배움카드)"],
-    ["2025.04 ~ 2025.10", "웹개발 과정 수료 · 코리아 IT 아카데미"],
+    ["2025.07 ~ 2025.12", "빅데이터 활용 클라우드 SaaS 기반 시니어케어 ERP 개발 과정 수료 · 코리아 IT 아카데미 (국민내일배움카드, React·TypeScript, Spring Boot, JPA, Spring Security, MariaDB 프로젝트 수행)"],
+    ["2025.04 ~ 2025.10", "웹개발 과정 수강 · 코리아 IT 아카데미 (React, Java, Spring Boot, MyBatis, Thymeleaf, MySQL, Spring Security)"],
   ]),
 
   h1("자격 · 이수"),
   table([2600, CONTENT_W - 2600], [
     ["취득·이수", "내용"],
+    ["2026.08", "컴퓨터활용능력 2급 최종합격 · 대한상공회의소"],
     ["2026.03", "SQLD (SQL개발자) 최종합격 · 한국데이터베이스진흥센터"],
     ["2026.04", "Claude 101 · Anthropic"],
     ["2026.04", "Introduction to Claude Cowork · Anthropic"],
@@ -322,6 +331,7 @@ const resume = doc("이력서", [
     ["Backend", "Java, Spring Boot, Spring Security, Spring Data JPA, QueryDSL, MyBatis, OAuth2, SockJS"],
     ["Database · Infra", "PostgreSQL, MariaDB, MySQL, Prisma, Supabase, Firebase, Vercel"],
     ["Tools", "IntelliJ IDEA, VSCode, DBeaver, Postman, GitHub"],
+    ["AI 도구", "Claude Code, Cursor, OpenAI API"],
     ["Design", "Photoshop(실무), Illustrator, Figma"],
   ]),
 
