@@ -6,8 +6,8 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  AlignmentType, BorderStyle, Document, Footer, HeadingLevel, LevelFormat, Packer, PageNumber,
-  Paragraph, ShadingType, Table, TableCell, TableRow, TextRun, WidthType,
+  AlignmentType, BorderStyle, Document, Footer, HeadingLevel, ImageRun, LevelFormat, Packer, PageNumber,
+  Paragraph, ShadingType, Table, TableCell, TableRow, TextRun, VerticalAlign, WidthType,
 } from "docx";
 import { parseStory, storyPlainText } from "../site/scripts/story.mjs";
 
@@ -110,9 +110,17 @@ const tasks = [
     id: "실무", name: "자사몰 운영 및 웹디자인 실무 (인더슈)", period: "2023.02 ~ 2024.12",
     ability: "대인관계력",
     stack: "Photoshop, Illustrator, Figma, CAFE24, EZAdmin",
-    situation: "디자인과 운영을 함께 맡아 자사몰과 여러 오픈마켓을 동시에 관리해야 했고, HTML을 아는 사람이 거의 없어 이미지 삽입 위주로 자사몰과 파일이 비효율적으로 관리되고 있었다.",
+    situation: "디자인과 운영을 함께 맡아 자사몰과 여러 오픈마켓을 동시에 관리해야 했다.",
     action: "CAFE24·EZAdmin 기반으로 자사몰을 운영하며 의류·슈즈 상세 페이지와 메인·프로모션 배너를 기획·디자인하고, G마켓·11번가 딜 세팅을 전담했다. 운영 담당자와의 협업과 사용자 경험을 고려해 상세 페이지를 설계했고, 회사 간 사업 추진을 위한 물류 프로세스를 기획해 PPT로 정리했다.",
-    result: "디자인 제작부터 상품 운영·프로모션 반영·판매 채널 관리까지 수행했고, 물류 프로세스 정리로 계약 추진에 기여했다. 구조적인 문제는 디자인만으로 풀 수 없다는 한계를 느껴 회사에 다니며 DBMS와 웹 개발 수업을 병행하기 시작했다.",
+    result: "디자인 제작부터 상품 운영·프로모션 반영·판매 채널 관리까지 수행했고, 물류 프로세스 정리로 계약 추진에 기여했다.",
+  },
+  {
+    id: "실무", name: "자사몰 유지보수 (골든보이, 아르바이트)", period: "2025.02 ~ 2025.06",
+    ability: "자기동기력",
+    stack: "CAFE24, Photoshop, HTML",
+    situation: "HTML을 아는 사람이 거의 없어 자사몰이 단순 이미지 삽입 위주로 운영되고, 이미지와 파일이 비효율적으로 관리되고 있었다. 이전 회사는 이미지를 올리고 링크만 넣으면 정리되는 구조였다.",
+    action: "웹 디자인 업무와 자사몰 유지보수를 하면서, 설계 차이가 운영 효율을 바꾼다는 점을 확인하고 회사에 다니며 DBMS와 웹 개발 수업을 병행했다.",
+    result: "디자인 결과물만으로는 구조적인 문제를 풀 수 없다는 판단으로 웹 개발에 전념하기로 했고, 2025년 웹개발 과정과 ERP 개발 과정을 수료했다.",
   },
   {
     id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
@@ -228,12 +236,39 @@ const teachingHistory = [
 ];
 
 // ------------------------------------------------------------ 이력서
+// 상단: 왼쪽 이름·연락처, 오른쪽 증명사진 (사이트와 같은 메타데이터 제거본, 4:5)
+const PHOTO = readFileSync(join(SITE, "static", "images", "lee-seulgi.jpg"));
+const PHOTO_COL = 2000;
+const none = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
+const noBorders = { top: none, bottom: none, left: none, right: none };
+const resumeHeader = new Table({
+  width: { size: CONTENT_W, type: WidthType.DXA },
+  columnWidths: [CONTENT_W - PHOTO_COL, PHOTO_COL],
+  borders: { ...noBorders, insideHorizontal: none, insideVertical: none },
+  rows: [new TableRow({ children: [
+    new TableCell({
+      borders: noBorders, width: { size: CONTENT_W - PHOTO_COL, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
+      children: [
+        new Paragraph({ style: "Title", children: [new TextRun("이력서")] }),
+        p("이슬기", { run: { size: 28, bold: true } }),
+        p(heroLine, { run: { color: MUTED } }),
+        p(contactText),
+        p("포트폴리오: seulgistory.vercel.app · GitHub: github.com/Lui-die-lui", { run: { color: MUTED, size: 18 } }),
+        p("이전 포트폴리오: seulgi-portfolio-henna.vercel.app", { run: { color: MUTED, size: 18 } }),
+      ],
+    }),
+    new TableCell({
+      borders: noBorders, width: { size: PHOTO_COL, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
+      children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [
+        new ImageRun({ type: "jpg", data: PHOTO, transformation: { width: 108, height: 135 },
+          altText: { title: "증명사진", description: "이슬기 증명사진", name: "photo" } }),
+      ] })],
+    }),
+  ] })],
+});
+
 const resume = doc("이력서", [
-  new Paragraph({ style: "Title", children: [new TextRun("이력서")] }),
-  p("이슬기", { run: { size: 28, bold: true } }),
-  p(heroLine, { run: { color: MUTED } }),
-  p(contactText),
-  p("포트폴리오: seulgi-portfolio-henna.vercel.app · GitHub: github.com/Lui-die-lui", { run: { color: MUTED, size: 18 } }),
+  resumeHeader,
   ...draftNote,
 
   h1("관심 분야"),
