@@ -71,7 +71,9 @@ EXCLUDE_PATTERNS = [
 MIN_QUOTE_LEN = 12
 MAX_CANDIDATES_PER_ABILITY = 8
 
-ATTENDANCE_STATUSES = ["출석", "지각", "조퇴", "결석", "공결"]
+ATTENDANCE_STATUSES = ["출석", "지각", "조퇴", "결석", "공결", "공가"]
+ATTENDED_STATUSES = ("출석", "지각", "조퇴")  # 등원한 날
+EXCUSED_STATUSES = ("공결", "공가")          # 인정된 사유로 쉰 날
 SUBMISSION_STATUSES = ["제출", "미제출", "지연제출"]
 
 
@@ -202,7 +204,7 @@ def ritual_metrics(days: list[dict], status: str) -> list[dict]:
 def attendance_metrics(rows: list[dict], status: str) -> list[dict]:
     src = {"name": "내 출석 기록", "file": "inputs/attendance.csv", "status": status}
     base = {"id": "attendance", "label": "출석", "unit": "일",
-            "definition": "출석 기록 원본에서 상태가 '출석' 또는 '지각'인 날짜 수 / 기록된 수업일 수"}
+            "definition": "출석 기록 원본에서 등원한 날(출석·지각·조퇴) / 확정된 수업일 수"}
     valid = [(parse_date(r.get("date", "")), r.get("status", "")) for r in rows]
     valid = [(d, s) for d, s in valid if d is not None and s in ATTENDANCE_STATUSES]
     if not valid:
@@ -210,9 +212,14 @@ def attendance_metrics(rows: list[dict], status: str) -> list[dict]:
     by_date = {}
     for d, s in sorted(valid):
         by_date[d] = s  # 같은 날짜가 여러 번이면 마지막 행을 쓴다
-    present = sum(1 for s in by_date.values() if s in ("출석", "지각"))
-    return [{**base, "value": {"present": present, "total": len(by_date)},
+    counts = {k: sum(1 for s in by_date.values() if s == k) for k in ATTENDANCE_STATUSES}
+    present = sum(counts[k] for k in ATTENDED_STATUSES)
+    excused = sum(counts[k] for k in EXCUSED_STATUSES)
+    detail = f"지각 {counts['지각']}일 · 조퇴 {counts['조퇴']}일 · 공가 {excused}일 · 결석 {counts['결석']}일"
+    return [{**base, "value": {"present": present, "total": len(by_date), "late": counts["지각"],
+                               "early_leave": counts["조퇴"], "excused": excused, "absent": counts["결석"]},
              "display": f"{len(by_date)}일 중 {present}일",
+             "definition": base["definition"] + f" ({detail})",
              "period": period(list(by_date)), "source": src}]
 
 
@@ -227,10 +234,17 @@ def submission_metrics(rows: list[dict], status: str) -> list[dict]:
     for r in sorted(valid, key=lambda r: r["task_id"]):
         by_task[r["task_id"]] = r
     done = sum(1 for r in by_task.values() if r["status"] in ("제출", "지연제출"))
-    dates = [parse_date(r.get("due_date", "")) for r in by_task.values()]
-    return [{**base, "value": {"submitted": done, "total": len(by_task)},
+    late = sum(1 for r in by_task.values() if r["status"] == "지연제출")
+    dates = [d for d in (parse_date(r.get("due_date", "")) for r in by_task.values()) if d]
+    per = period(dates)
+    if per is None:
+        # 마감일이 없으면 기간을 지어내지 않고, 원본을 확인한 날(checked_on)만 기준일로 적는다.
+        checked = sorted(d for d in (parse_date(r.get("checked_on", "")) for r in by_task.values()) if d)
+        per = {"start": None, "end": checked[-1].isoformat()} if checked else None
+    return [{**base, "value": {"submitted": done, "total": len(by_task), "late": late},
              "display": f"{len(by_task)}건 중 {done}건",
-             "period": period([d for d in dates if d]), "source": src}]
+             "definition": base["definition"] + f" (지연제출 {late}건)",
+             "period": per, "source": src}]
 
 
 # ---------------------------------------------------------------- 후보 문단

@@ -193,7 +193,7 @@ function calendarHtml(cal) {
 }
 
 function metricHtml(m) {
-  const period = m.period ? `${dot(m.period.start)}–${dot(m.period.end)}` : "기간 미정";
+  const period = !m.period ? "기간 미정" : m.period.start ? `${dot(m.period.start)}–${dot(m.period.end)}` : `${dot(m.period.end)} 확인 기준`;
   const pending = m.value === null;
   return `
     <li class="metric${pending ? " metric--pending" : ""}">
@@ -233,7 +233,7 @@ const evidenceCard = `
               .join("")}</ul></div>`
           : ""
       }
-      <p class="note">출석·과제 제출 수치는 리추얼 기록으로 추정하지 않고 원본 확인 뒤 반영합니다. 모든 숫자는 기록 갱신 장치가 원본에서 다시 계산합니다.</p>
+      <p class="note">출석·과제 제출 수치는 리추얼 기록으로 추정하지 않고 각 원본에서 셉니다. 모든 숫자는 기록 갱신 장치가 원본에서 다시 계산합니다.</p>
     </div>
 
     <div class="evidence__works" id="works">

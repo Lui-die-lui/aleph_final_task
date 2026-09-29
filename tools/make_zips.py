@@ -22,6 +22,7 @@ UPD = ROOT / "updater"
 DOCS = ROOT / "documents"
 OUT = ROOT / "deliverables"
 FIXED_TIME = (2026, 9, 29, 0, 0, 0)
+INPUT_FILES = ["ritual.json", "attendance.csv", "submissions.csv"]
 
 UPDATER_FILES = [
     "README.md", "update_records.py", "verify_twice.py",
@@ -64,8 +65,13 @@ def readme_fresh_run(zip_path: Path) -> str:
         with zipfile.ZipFile(zip_path) as z:
             z.extractall(tmp)
         work = Path(tmp) / "updater"
-        # README 1단계: 입력 넣기 (원본 리추얼 기록만 있음. 출석·제출 원본은 아직 없음)
-        shutil.copyfile(UPD / "inputs" / "ritual.json", work / "inputs" / "ritual.json")
+        # README 1단계: 입력 넣기 (ZIP에는 원본이 없으므로 작업 폴더의 원본을 그대로 넣는다)
+        used = []
+        for name in INPUT_FILES:
+            src = UPD / "inputs" / name
+            if src.exists():
+                shutil.copyfile(src, work / "inputs" / name)
+                used.append(name)
         runs = []
         for _ in range(2):
             # README 2단계 (사이트 폴더가 없는 새 폴더이므로 --publish-to 없이)
@@ -75,7 +81,7 @@ def readme_fresh_run(zip_path: Path) -> str:
     repo = {p.name: sha(p) for p in sorted((UPD / "output").iterdir())}
     lines = ["# README대로 새 폴더에서 실행한 기록", "",
              "1. 장치 ZIP을 새 임시 폴더에 풀었습니다(이 기록 파일을 넣기 전의 ZIP).",
-             "2. README 1단계: `inputs/`에 리추얼 기록 원본을 `ritual.json`으로 넣었습니다. 출석·제출 원본은 아직 없어 넣지 않았습니다.",
+             f"2. README 1단계: `inputs/`에 원본 {', '.join('`' + u + '`' for u in used)}를 넣었습니다(리추얼 기록·출석 기록·제출 현황).",
              "3. README 2단계: `python update_records.py`를 두 번 실행했습니다.",
              "4. 두 실행의 `output/` SHA-256과, ZIP에 들어 있는 `output/`(작업 폴더 결과)의 SHA-256을 비교했습니다.", "",
              "| 파일 | 새 폴더 1회차 | 새 폴더 2회차 | ZIP 안 결과 | 일치 |", "|---|---|---|---|---|"]
