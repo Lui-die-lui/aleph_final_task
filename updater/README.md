@@ -12,6 +12,18 @@
 2. **실행** — 이 폴더에서 `python update_records.py --publish-to ../site/data/records.json`을 실행합니다. `output/`에 숫자·후보·공개 데이터가 생기고, 공개 데이터가 사이트 폴더로 복사됩니다. (사이트 폴더가 없으면 `--publish-to` 없이 `python update_records.py`만 실행합니다.)
 3. **승인 후 다시 실행** — `output/candidates.md`에서 쓸 후보의 id를 `approvals/approved.json`에 옮기고, 직접 다듬은 문장을 `text`에 적은 뒤 `"approved": true`로 바꿉니다. 2단계를 다시 실행하면 승인한 문장만 반영됩니다. 사이트는 `site` 폴더에서 `npm run build`로 다시 만듭니다.
 
+## 사이트에 반영하기 (과정이 끝난 뒤에도)
+
+위 세 단계로 `site/data/records.json`이 바뀌면, 저장소 루트에서 커밋하고 푸시합니다. Vercel이 자동으로 다시 빌드해 공개 사이트(https://seulgistory.vercel.app/)의 잔디 달력·숫자 칸·승인 문장이 새 기록으로 바뀝니다. 사이트 코드를 고칠 필요는 없습니다.
+
+```bash
+git add site/data/records.json updater/output updater/approvals
+git commit -m "기록 갱신: YYYY-MM-DD까지"
+git push
+```
+
+원본 입력(`inputs/`)은 `.gitignore`로 제외되어 저장소에 올라가지 않습니다.
+
 재현성 확인: `python verify_twice.py` → 새 임시 폴더에서 두 번(+다른 새 폴더에서 한 번) 실행해 SHA-256을 비교하고 `verification/reproducibility.md`에 기록합니다.
 
 ## 입력
