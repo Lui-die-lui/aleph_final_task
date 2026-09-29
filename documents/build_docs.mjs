@@ -106,14 +106,6 @@ const draftNote = [decisions.heroLine, decisions.storyFirstSentence, decisions.s
 //       10번 논문 README, 리추얼 기록
 const tasks = [
   {
-    id: "팀", name: "GOING (실시간 스트리밍 서비스)", period: "2026.01 ~ 진행 중 · 팀 5인",
-    ability: "대인관계력",
-    stack: "Spring Boot, React, JPA, Scheduler, RTMP, HLS",
-    situation: "OBS 송출·RTMP ingest·HLS 재생을 쓰는 서비스에서 사용자 화면과 실제 송출 상태의 기준이 어긋날 수 있었다.",
-    action: "방송 상태를 OFF/READY/LIVE/ENDED로 구조화해 화면과 스트리밍 흐름의 기준을 맞추고, stale timeout 스케줄러로 종료 이벤트가 누락돼도 LIVE가 남지 않게 했다. UUID 기반 스트림 키 발급·조회·재발급을 구현했다.",
-    result: "진행 중. 팀이 같은 상태 기준으로 송출·재생 흐름을 다룰 수 있게 정리했다.",
-  },
-  {
     id: "팀", name: "RunnersHigh (러닝 기록 공유 플랫폼)", period: "2025.09.01 ~ 2025.10.01 · 팀 4인",
     ability: "자기조절력 · 대인관계력",
     stack: "React, JavaScript, Kakao Maps API, Spring Boot, MyBatis, MySQL",
