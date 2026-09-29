@@ -1,0 +1,13 @@
+{
+  "name": "lee-seulgi-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "BR-A 공개 포트폴리오 (정적 사이트)",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "check": "node scripts/build.mjs && python ../tools/privacy_scan.py dist"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,10 @@
+{
+  "_안내": "output/candidates.md에서 고른 후보의 id를 candidate_id에 적고, 직접 다듬은 문장을 text에 적은 뒤 approved를 true로 바꾸세요. approved가 true인 항목만 공개 데이터에 들어갑니다. 아래 예시는 approved가 false라 반영되지 않습니다.",
+  "paragraphs": [
+    {
+      "candidate_id": "self_regulation-2026-08-24-510ae1",
+      "approved": false,
+      "text": "(여기에 본인이 승인한 문장을 적습니다)"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "metrics": [
+    {
+      "definition": "시작(open) 또는 마무리(close) 기록이 한 줄 이상 있는 날짜 수",
+      "display": "32일",
+      "id": "ritual_days",
+      "label": "리추얼 기록일",
+      "period": {
+        "end": "2026-09-29",
+        "start": "2026-08-11"
+      },
+      "source": {
+        "file": "inputs/ritual.json",
+        "name": "리추얼 기록",
+        "status": "반영"
+      },
+      "unit": "일",
+      "value": 32
+    },
+    {
+      "definition": "기록 기간(첫 기록 주 월요일~마지막 기록 주)의 달력 주 가운데 기록이 1일 이상 있는 주의 수",
+      "display": "8주 중 8주",
+      "id": "ritual_weeks",
+      "label": "기록이 있는 주",
+      "period": {
+        "end": "2026-09-29",
+        "start": "2026-08-11"
+      },
+      "source": {
+        "file": "inputs/ritual.json",
+        "name": "리추얼 기록",
+        "status": "반영"
+      },
+      "unit": "주",
+      "value": 8
+    },
+    {
+      "definition": "같은 날짜에 시작 기록과 마무리 기록이 모두 있는 날짜 수",
+      "display": "32일",
+      "id": "ritual_open_close_days",
+      "label": "시작·마무리를 모두 쓴 날",
+      "period": {
+        "end": "2026-09-29",
+        "start": "2026-08-11"
+      },
+      "source": {
+        "file": "inputs/ritual.json",
+        "name": "리추얼 기록",
+        "status": "반영"
+      },
+      "unit": "일",
+      "value": 32
+    },
+    {
+      "definition": "마무리 기록에 '강점 행동: 실천했다'라고 본인이 표시한 날짜 수(자기 보고)",
+      "display": "32일",
+      "id": "ritual_practiced_days",
+      "label": "강점 행동 '실천했다' 표시",
+      "period": {
+        "end": "2026-09-29",
+        "start": "2026-08-11"
+      },
+      "source": {
+        "file": "inputs/ritual.json",
+        "name": "리추얼 기록",
+        "status": "반영"
+      },
+      "unit": "일",
+      "value": 32
+    },
+    {
+      "definition": "출석 기록 원본에서 상태가 '출석' 또는 '지각'인 날짜 수 / 기록된 수업일 수",
+      "display": "자료 확인 후 반영",
+      "id": "attendance",
+      "label": "출석",
+      "period": null,
+      "source": {
+        "file": "inputs/attendance.csv",
+        "name": "내 출석 기록",
+        "status": "파일 없음"
+      },
+      "unit": "일",
+      "value": null
+    },
+    {
+      "definition": "제출 현황 원본에서 상태가 '제출' 또는 '지연제출'인 과제 수 / 목록의 과제 수",
+      "display": "자료 확인 후 반영",
+      "id": "submissions",
+      "label": "과제 제출",
+      "period": null,
+      "source": {
+        "file": "inputs/submissions.csv",
+        "name": "내 제출 현황",
+        "status": "파일 없음"
+      },
+      "unit": "건",
+      "value": null
+    }
+  ],
+  "note": "빈칸(기록이 없는 날)을 실패로 해석하지 않는다. 출석·제출 수치는 리추얼 기록으로 추정하지 않는다.",
+  "schema_version": 1
+}

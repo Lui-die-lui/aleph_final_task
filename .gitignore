@@ -1,0 +1,32 @@
+# ---- 비밀값
+.env
+.env.*
+!.env.example
+
+# ---- 공개하면 안 되는 원본 자료 (사적인 기록·재현 ZIP 전체·원본 사진)
+ritual-history-*.json
+T10_multipotential_transfer_submission.zip
+image/
+updater/inputs/*
+!updater/inputs/README.md
+tools/deny.local.txt
+
+# ---- 장치의 문단 후보: 리추얼 원문 인용이 있어 공개 금지 (제출 ZIP에만 포함)
+updater/output/candidates.json
+updater/output/candidates.md
+
+# ---- 생성물 (다시 만들 수 있음, 개인 연락처 포함)
+site/dist/
+documents/out/
+deliverables/
+
+# ---- 도구·OS 부산물
+node_modules/
+__pycache__/
+*.pyc
+.vercel/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "installCommand": "echo no-dependencies",
+  "outputDirectory": "dist",
+  "framework": null,
+  "headers": [
+    {
+      "source": "/files/(.*)\.pdf",
+      "headers": [{ "key": "Content-Type", "value": "application/pdf" }]
+    }
+  ]
+}

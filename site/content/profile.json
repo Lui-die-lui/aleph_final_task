@@ -1,0 +1,32 @@
+{
+  "_안내": "확인된 이력·링크·지나온 작업. 출처: 본인이 공개 중인 기존 포트폴리오 https://seulgi-portfolio-henna.vercel.app/ (2026-09-29 확인), ALEPH 기록은 리추얼 기록. 사이트와 이력서·경력기술서가 함께 읽습니다.",
+
+  "lead": "플루트를 전공해 가르치고 연주했으며, 쇼핑몰 웹디자이너로 일한 뒤 개발을 배웠습니다. 지금은 데이터와 개발에 관심을 두고 AX 인프라 및 보안을 공부하고 있습니다.",
+
+  "timeline": [
+    { "period": "2019.03–2024.12", "title": "플루트 강사 · 방과후교사", "detail": "음악학원 강사, 초·중학교 관악부·오케스트라 지도" },
+    { "period": "2020.09–2025.06", "title": "웹디자이너 · 3곳", "detail": "자사몰·오픈마켓 상세 페이지와 배너 디자인, CAFE24 자사몰 운영" },
+    { "period": "2022.10", "title": "제1회 리사이틀(독주회)", "detail": "한국예술인복지재단 사업 선정" },
+    { "period": "2025.04–2025.12", "title": "웹개발 · ERP 개발 과정 수료", "detail": "코리아 IT 아카데미" },
+    { "period": "2026.03", "title": "SQLD 최종합격", "detail": "한국데이터베이스진흥센터" },
+    { "period": "2026.08–", "title": "ALEPH 과정 · AX 인프라", "detail": "리추얼 기록 기준 2026.08.11부터 참여 중" }
+  ],
+
+  "links": [
+    { "label": "이전 포트폴리오", "href": "https://seulgi-portfolio-henna.vercel.app/" },
+    { "label": "GitHub", "href": "https://github.com/Lui-die-lui" },
+    { "label": "개발 블로그 (Velog)", "href": "https://velog.io/@luislki_" },
+    { "label": "연주 영상 (YouTube)", "href": "https://www.youtube.com/@%EC%9D%B4%EC%8A%AC%EA%B8%B0-s9o6t" }
+  ],
+
+  "works": [
+    { "name": "ODYSSEY PLAN", "kind": "개인", "period": "2026.03", "summary": "AI 인터뷰 응답으로 5년 계획을 만드는 서비스", "href": "https://odyssey-plan-studio-vzqt.vercel.app/" },
+    { "name": "MU:ZIN", "kind": "개인 · 진행 중", "period": "2026.01–03", "summary": "클래식 악기 레슨 예약 플랫폼", "href": "https://github.com/Lui-die-lui/MU-ZIN_frontend" },
+    { "name": "OMIJOY", "kind": "팀 5인", "period": "2025.10–12", "summary": "공연 탐색·예매 연계 플랫폼", "href": "https://github.com/Team-OMIJA" },
+    { "name": "RunnersHigh", "kind": "팀 4인", "period": "2025.09–10", "summary": "러닝 기록 공유 피드", "href": "https://github.com/Zone2Maker/RunnersHigh-readme" },
+    { "name": "잉크의 방", "kind": "ALEPH T02", "period": "2026", "summary": "31개 방을 지나는 웹 게임", "href": "https://ink-room-five.vercel.app/" },
+    { "name": "짤칵 스튜디오", "kind": "ALEPH T03", "period": "2026", "summary": "이미지·문구 편집기", "href": "https://zzalkakstudio.vercel.app/" },
+    { "name": "AFTERWAVE", "kind": "ALEPH T04", "period": "2026", "summary": "실패에도 정직한 지진 정보판", "href": "https://afterwave-lilac.vercel.app/" },
+    { "name": "DO:IT", "kind": "ALEPH", "period": "2026", "summary": "계획·실행·돌아보기 다이어리", "href": "https://doitdiary.vercel.app/" }
+  ]
+}

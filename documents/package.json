@@ -1,0 +1,13 @@
+{
+  "name": "lee-seulgi-documents",
+  "version": "1.0.0",
+  "description": "이력서·자기소개서·경력기술서 DOCX 생성",
+  "scripts": {
+    "build": "node build_docs.mjs"
+  },
+  "dependencies": {
+    "docx": "^9.8.1"
+  },
+  "private": true,
+  "type": "module"
+}
