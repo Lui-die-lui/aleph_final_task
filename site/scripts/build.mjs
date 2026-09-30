@@ -278,8 +278,7 @@ const evidenceCard = `
         </ol>
         <p class="muted small">외부 AI에 붙여 넣을 프롬프트를 만들어 주지만 대신 전송하지 않고, 앱의 실제 효과는 검증하지 않았다고 화면에 밝혀 둡니다.</p>
         <div class="actions">
-          <a class="btn" href="https://nextlife-iota.vercel.app/demo" target="_blank" rel="noopener">예시로 체험하기<span class="sr-only"> (새 창)</span></a>
-          <a class="btn btn--ghost" href="https://nextlife-iota.vercel.app/" target="_blank" rel="noopener">앱 열기 ↗<span class="sr-only"> (새 창)</span></a>
+          <a class="btn" href="https://nextlife-iota.vercel.app/" target="_blank" rel="noopener">앱 열기 ↗<span class="sr-only"> (새 창)</span></a>
           <span class="muted small">Next.js · 로그인 없이 데모 체험</span>
         </div>
       </article>
