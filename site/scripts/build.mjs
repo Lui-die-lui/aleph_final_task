@@ -266,10 +266,22 @@ const evidenceCard = `
           <span class="muted small">PDF · 16쪽 · ${kb(paperPdf)}</span>
         </div>
       </article>
-      <article class="work work--placeholder" aria-label="13번 앱 자리">
-        <p class="work__kind"><span class="num">02</span> 다음 대표작</p>
-        <h3 class="work__title">13번 앱</h3>
-        <p class="muted">완료 후 공개 예정</p>
+      <article class="work work--app">
+        <p class="work__kind"><span class="num">02</span> 웹 앱 · 다음 생 NextLife</p>
+        <h3 class="work__title">분야는 바뀌어도, 경험은 이어집니다</h3>
+        <p class="work__subtitle">지금까지의 경험에서 다음 도전에 가져갈 방법을 찾고, 작은 실험으로 확인하는 앱</p>
+        <p>위 논문의 연결 단서·구조 비교 논의를 바탕으로 화면과 입력 항목을 설계했습니다. 경험을 억지로 잇지 않고, 그대로 옮기면 안 되는 차이까지 함께 적게 합니다.</p>
+        <ol class="flow">
+          <li><span class="flow__step">경험</span><span>분야를 가리지 않고 해본 일과 풀어낸 방법을 기록</span></li>
+          <li><span class="flow__step">연결</span><span>새 도전과 공통된 목표·장애물·제약, 달라서 안 되는 점을 연결 카드로</span></li>
+          <li><span class="flow__step">실험</span><span>체크리스트와 종료일 알림으로 작게 해 보고, 보고서를 남겨야 마무리</span></li>
+        </ol>
+        <p class="muted small">외부 AI에 붙여 넣을 프롬프트를 만들어 주지만 대신 전송하지 않고, 앱의 실제 효과는 검증하지 않았다고 화면에 밝혀 둡니다.</p>
+        <div class="actions">
+          <a class="btn" href="https://nextlife-iota.vercel.app/demo" target="_blank" rel="noopener">예시로 체험하기<span class="sr-only"> (새 창)</span></a>
+          <a class="btn btn--ghost" href="https://nextlife-iota.vercel.app/" target="_blank" rel="noopener">앱 열기 ↗<span class="sr-only"> (새 창)</span></a>
+          <span class="muted small">Next.js · 로그인 없이 데모 체험</span>
+        </div>
       </article>
     </div>
   </div>

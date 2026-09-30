@@ -233,6 +233,7 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 .card--evidence .roles { margin: 0.6rem 0 0.9rem; }
 .card--evidence .roles div { padding: 5px 0; }
 .card--evidence .work--placeholder { padding: 14px 20px; }
+.card--evidence .work--app { padding-top: 1rem; }
 .card--evidence .work--placeholder .work__title { font-size: 1.4rem; }
 
 /* 달력(고정 폭) 옆에 리추얼 숫자를 세로로 붙여 빈 공간을 줄인다 */
@@ -307,6 +308,11 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 }
 .btn--ghost { background: transparent; color: var(--ink); }
 .btn:hover { opacity: 0.86; }
+/* 두 번째 대표작: 논문 아래에 선으로 나누고 사용 흐름을 세 줄로 */
+.work--app { margin-top: 0.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.flow { list-style: none; margin: 0.6rem 0 0.9rem; padding: 0; border-top: 1px solid var(--line); }
+.flow li { display: grid; grid-template-columns: 3.2em 1fr; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; line-height: 1.5; color: var(--ink-2); }
+.flow__step { font-weight: 700; color: var(--ink); }
 .work--placeholder {
   margin-top: 0.4rem; padding: 22px 24px; border: 1.5px dashed var(--faint); border-radius: 16px;
 }
@@ -337,7 +343,33 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
   .chapter__num { font-size: 3.2rem; margin-bottom: 0.8rem; }
   .abilities { grid-template-columns: 1fr; }
   .abilities li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  /* 3열이면 칸이 좁아 문서 이름이 한 글자씩 세로로 쪼개지므로 한 줄에 하나씩 */
+  .doc-list { grid-template-columns: 1fr; }
   .evidence__works { border-left: 0; padding-left: 0; border-top: 1px solid var(--ink); padding-top: 2rem; }
+  /* 한 화면에 맞추려고 줄인 기록·대표작 카드 간격을 세로로 읽는 화면에서는 다시 넓힌다 */
+  .card--evidence { --pad-y: 48px; }
+  .card--evidence .eyebrow { margin-bottom: 1rem; }
+  .card--evidence .section-title { margin-bottom: 2rem; }
+  .card--evidence .records-top { gap: 32px; margin-bottom: 2rem; }
+  .card--evidence .metrics--stack .metric { padding: 14px 0; }
+  .card--evidence .metrics--pair { margin-bottom: 2rem; }
+  .card--evidence .metrics--pair .metric { padding: 16px 16px 16px 0; }
+  .card--evidence .metric { gap: 4px; }
+  .card--evidence .pairing { margin-bottom: 1.6rem; padding: 4px 0 4px 16px; }
+  .card--evidence .pairing__label { margin-bottom: 0.4rem; }
+  .card--evidence .note { margin-bottom: 2.4rem; }
+  .card--evidence .work { padding-bottom: 2.4rem; }
+  .card--evidence .work__kind { margin-bottom: 0.8rem; }
+  .card--evidence .work__title { margin-bottom: 0.6rem; }
+  .card--evidence .work__subtitle { margin-bottom: 1.4rem; }
+  .card--evidence .work p { margin-bottom: 1.1em; }
+  .card--evidence .verdict { margin: 1.4rem 0 1rem; }
+  .card--evidence .verdict div { padding: 14px 8px 14px 0; }
+  .card--evidence .roles { margin: 1.2rem 0 1.6rem; }
+  .card--evidence .roles div { padding: 10px 0; }
+  .card--evidence .work--app { padding-top: 2.4rem; }
+  .flow { margin: 1.2rem 0 1.4rem; }
+  .flow li { padding: 11px 0; }
   .site-footer { padding-top: 3rem; }
   .card { padding-top: 48px; padding-bottom: 48px; }
   .card--hero { padding-top: 20px; }
@@ -352,7 +384,6 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 @media (max-width: 520px) {
   .metrics.metrics--pair { grid-template-columns: 1fr; }
   .past-works ul { grid-template-columns: 1fr; }
-  .doc-list { grid-template-columns: 1fr; }
   .timeline li { grid-template-columns: 1fr; gap: 0; }
   .timeline__detail { grid-column: auto; }
   .meta-bar { grid-template-columns: 1fr 1fr; }
