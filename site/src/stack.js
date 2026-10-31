@@ -131,7 +131,7 @@
   function onKey(e) {
     if (!on || e.altKey || e.ctrlKey || e.metaKey) return;
     var t = e.target;
-    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|SUMMARY)$/.test(t.tagName))) return;
     var dir = KEYS[e.key];
     if (!dir) return;
     if (e.key === " " && e.shiftKey) dir = -1;
@@ -177,6 +177,22 @@
   else if (mq.addListener) mq.addListener(layout);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
   window.addEventListener("load", layout);
+  function followHash() {
+    var el = location.hash.length > 1 && document.getElementById(location.hash.slice(1));
+    if (!on || !el) return;
+    stop();
+    clearTimeout(idleTimer);
+    jump(el.getBoundingClientRect().top + window.scrollY);
+  }
+  window.addEventListener("load", function () {
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+      layout();
+      followHash();
+      document.documentElement.classList.add("smooth-scroll");
+    });
+  });
+  // 이야기를 펼치거나 접으면 카드 높이가 바뀌므로 다시 잰다. (toggle은 버블링되지 않아 capture로 받는다)
+  document.addEventListener("toggle", layout, true);
 
   window.addEventListener("wheel", onWheel, { passive: false });
   window.addEventListener("keydown", onKey);

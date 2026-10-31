@@ -21,7 +21,8 @@
 
 html { -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
+  /* 첫 위치를 잡은 뒤에 켠다. 처음부터 켜면 주소의 앵커로 가는 애니메이션이 stack.js 보정과 겹친다 */
+  html.smooth-scroll { scroll-behavior: smooth; }
 }
 
 body {
@@ -71,7 +72,7 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.04em; line-height: 
   border: 1px solid var(--ink); border-radius: 999px;
   font-size: 0.72rem; font-weight: 600; line-height: 1.7; letter-spacing: 0; vertical-align: 2px;
 }
-.tags { display: inline; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 1rem 0 0; }
 
 /* ---------------------------------------------------------------- 카드 스택 */
 .stack { position: relative; }
@@ -148,7 +149,9 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.04em; line-height: 
 .about__interest strong { margin-right: 0.8em; }
 .link-row { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 0.9rem; font-weight: 600; }
 .link-row a { text-decoration: none; border-bottom: 1px solid var(--ink); }
-.doc-list { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 40px; border-top: 1px solid var(--ink); }
+/* 문서 줄과 지나온 작업은 같은 3칸 격자를 쓴다 */
+.doc-list, .past-works ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 40px; }
+.doc-list { list-style: none; padding: 0; margin: 0 0 1.4rem; border-top: 1px solid var(--ink); }
 .doc {
   display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
   padding: 18px 0; border-bottom: 1px solid var(--line);
@@ -159,13 +162,15 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 .doc--pending { color: var(--faint); }
 .past-works { margin: 0 0 2.4rem; }
 .past-works__label { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 0.6rem; }
-.past-works ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 24px; border-top: 1px solid var(--line); }
-.past-works a, .past-works__item { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; line-height: 1.45; }
+.past-works ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.past-works li { display: flex; }
+.past-works a, .past-works__item { flex: 1; min-width: 0; display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; line-height: 1.45; }
 .past-works a:hover .past-works__link { text-decoration: underline; }
 .past-works__name { font-weight: 700; font-size: 0.98rem; }
 .past-works__meta { font-size: 0.74rem; color: var(--faint); }
 .past-works__summary { font-size: 0.82rem; color: var(--muted); }
-.past-works__link { margin-top: 4px; font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+.past-works__role { margin-top: 2px; font-size: 0.78rem; color: var(--ink-2); }
+.past-works__link { margin-top: auto; padding-top: 4px; font-size: 0.78rem; font-weight: 600; color: var(--ink); }
 .past-works__link--none { color: var(--faint); font-weight: 500; }
 .facts { margin: 2rem 0 0; border-top: 1px solid var(--line); }
 .facts div {
@@ -181,7 +186,7 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
   display: flex; flex-direction: column; justify-content: center;
 }
 .story-open__first {
-  font-size: clamp(2rem, 5vw, 4.4rem); font-weight: 800;
+  font-size: clamp(1.8rem, 5vw, 4.4rem); font-weight: 800;
   line-height: 1.15; letter-spacing: -0.05em; margin: 0; max-width: 15em;
 }
 .story-open__intro { max-width: 36em; margin-top: 2.4rem; color: var(--ink-2); font-size: 1.08rem; }
@@ -204,18 +209,31 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 .chapter__head .eyebrow { margin-bottom: 0.6rem; }
 .chapter__body { max-width: 38em; font-size: 1.06rem; }
 .chapter__body p { margin-bottom: 1.3em; }
+/* 이야기 본편: 기본은 접어 두고, 펼치면 도입부 카드 안에서 이어 읽는다 */
+.story-more { margin-top: 2rem; }
+.story-more summary {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; cursor: pointer;
+  border: 1.5px solid var(--ink); border-radius: 999px; font-weight: 600; font-size: 0.92rem;
+}
+.story-more summary::-webkit-details-marker { display: none; }
+.story-more summary:hover { opacity: 0.86; }
+.story-more summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.story-more__close, .story-more[open] .story-more__open { display: none; }
+.story-more[open] .story-more__close { display: inline; }
+.story-more .chapter { min-height: 0; padding: 3rem 0; border-bottom: 1px solid var(--line); }
+.story-more .chapter:last-child { border-bottom: 0; padding-bottom: 0; }
 .chapter__last {
   margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--ink);
   font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.45; letter-spacing: -0.03em;
 }
 
 /* ---------------------------------------------------------------- 기록 + 대표작 */
-.evidence {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(28px, 5vw, 80px); align-items: start;
-}
-.evidence__works { border-left: 1px solid var(--line); padding-left: clamp(24px, 4vw, 64px); }
-.evidence { min-height: calc(100svh - 2 * var(--pad-y)); align-content: center; align-items: center; }
+/* 기록 카드와 대표작 카드: 한 화면에 들어가는 세로 가운데 정렬 */
+.evidence { min-height: calc(100svh - 2 * var(--pad-y)); display: flex; flex-direction: column; justify-content: center; }
+.evidence__cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 80px); }
+.evidence__cols .metrics { margin: 0; grid-auto-rows: 1fr; }
+.evidence__cols .skills { margin: 0; display: grid; grid-auto-rows: 1fr; }
+.evidence__cols .skills div { align-items: center; }
 .card--evidence { --pad-y: clamp(24px, 3.5vh, 44px); }
 .card--evidence .eyebrow { margin-bottom: 0.8rem; }
 .card--evidence .section-title { font-size: clamp(1.6rem, 2.6vw, 2.3rem); margin-bottom: 1.2rem; }
@@ -276,6 +294,15 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 .metric--pending .metric__value { font-size: 1rem; font-weight: 600; color: var(--muted); padding: 0.45rem 0; }
 .metric__def, .metric__src { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
 
+/* 기술 스택: 타임라인처럼 줄로 나눈 표 */
+.skills { margin: 1.6rem 0 0; border-top: 1px solid var(--ink); }
+.skills div {
+  display: grid; grid-template-columns: 6.5em 1fr; gap: 12px; align-items: baseline;
+  padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; line-height: 1.5;
+}
+.skills dt { font-weight: 700; }
+.skills dd { margin: 0; color: var(--ink-2); }
+
 .pairing, .approved { border-left: 2px solid var(--ink); padding: 2px 0 2px 16px; margin: 0 0 1.2rem; font-size: 0.95rem; }
 .pairing p { margin-bottom: 0.2rem; }
 .pairing__label { font-size: 0.76rem; font-weight: 600; color: var(--muted); }
@@ -308,11 +335,16 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 }
 .btn--ghost { background: transparent; color: var(--ink); }
 .btn:hover { opacity: 0.86; }
-/* 두 번째 대표작: 논문 아래에 선으로 나누고 사용 흐름을 세 줄로 */
+/* 두 번째 대표작부터: 앞 작품과 선으로 나눈다. NextLife는 사용 흐름을 세 줄로 */
 .work--app { margin-top: 0.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
 .flow { list-style: none; margin: 0.6rem 0 0.9rem; padding: 0; border-top: 1px solid var(--line); }
 .flow li { display: grid; grid-template-columns: 3.2em 1fr; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; line-height: 1.5; color: var(--ink-2); }
 .flow__step { font-weight: 700; color: var(--ink); }
+/* NextLife 안에 흡수한 설계 근거 논문 */
+.work__basis { margin-top: 0.9rem; }
+.work__basis summary { cursor: pointer; font-size: 0.9rem; font-weight: 700; }
+.work__basis summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+.text-link { font-size: 0.9rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--ink); }
 .work--placeholder {
   margin-top: 0.4rem; padding: 22px 24px; border: 1.5px dashed var(--faint); border-radius: 16px;
 }
@@ -323,7 +355,8 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 .docs { display: flex; flex-direction: column; min-height: calc(100svh - 2 * var(--pad-y)); justify-content: center; }
 /* 위쪽 여백과 푸터 앞 여백을 똑같이 나눠 내용을 세로 가운데에 둔다 */
 .docs > .eyebrow { margin-top: auto; }
-.contact { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 40px; align-items: baseline; margin: 0 0 2rem; }
+.contact__item { display: inline-flex; flex-wrap: wrap; gap: 0 14px; align-items: baseline; }
 .contact__label { font-weight: 700; }
 .contact__value { font-size: 1.15rem; }
 .contact__value--pending { color: var(--muted); font-size: 0.95rem; }
@@ -333,10 +366,37 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 }
 .site-footer a { text-decoration: none; }
 
+/* 넓은 화면: 대표작 두 개를 나란히. subgrid로 번호·제목·설명·표·버튼 줄을 서로 맞춘다 */
+@media (min-width: 900px) {
+  .works { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); }
+  .works .work { display: grid; grid-row: span 5; grid-template-rows: subgrid; min-width: 0; padding: 0 clamp(24px, 3vw, 48px) 0 0; }
+  .works .work--app { margin: 0; padding: 0 0 0 clamp(24px, 3vw, 48px); border-top: 0; border-left: 1px solid var(--line); }
+  .works .work__desc p:last-child { margin-bottom: 0; }
+  .works .work__body { display: flex; flex-direction: column; }
+  .works .work__body .roles { flex: 1; display: grid; grid-auto-rows: 1fr; }
+  .works .work__body .roles div { align-items: center; }
+
+  /* 기록·대표작 카드는 내용이 적어 화면 높이에 맞춰 조금 키운다 */
+  .card--evidence .section-title { font-size: clamp(1.7rem, 4.4vh, 2.6rem); margin-bottom: clamp(1.2rem, 2.8vh, 2rem); }
+  .card--evidence .eyebrow { margin-bottom: clamp(0.8rem, 1.6vh, 1.1rem); }
+  .card--evidence .evidence__cols .metric { padding: clamp(11px, 2.2vh, 24px) 16px clamp(11px, 2.2vh, 24px) 0; }
+  .evidence__cols .metric__label { font-size: clamp(0.84rem, 1.55vh, 0.95rem); }
+  .evidence__cols .metric__value { font-size: clamp(2rem, 5.2vh, 3.2rem); }
+  .evidence__cols .metric__def { font-size: clamp(0.76rem, 1.35vh, 0.84rem); }
+  .evidence__cols .skills div { font-size: clamp(0.9rem, 1.65vh, 1rem); }
+  .card--evidence .works .work__kind { font-size: clamp(0.84rem, 1.5vh, 0.92rem); }
+  .card--evidence .works .work__title { font-size: clamp(1.45rem, min(3.1vh, 2.2vw), 2.1rem); margin-bottom: clamp(0.4rem, 1vh, 0.7rem); }
+  .card--evidence .works .work__subtitle { font-size: clamp(0.88rem, 1.55vh, 0.98rem); }
+  .card--evidence .works .work__desc .small { font-size: clamp(0.82rem, 1.4vh, 0.9rem); }
+  .card--evidence .works .work__body .roles { font-size: clamp(0.86rem, 1.5vh, 0.94rem); margin: clamp(0.6rem, 1.3vh, 1rem) 0 clamp(0.9rem, 1.8vh, 1.3rem); }
+  .card--evidence .works .work__body .roles div { padding: clamp(5px, 0.9vh, 10px) 0; }
+}
+
 /* ---------------------------------------------------------------- 좁은 화면: 읽기 좋은 세로 문서 */
 @media (max-width: 899px) {
   body { font-size: 16px; }
-  .about, .chapter, .evidence { grid-template-columns: 1fr; min-height: 0; }
+  .about, .chapter { grid-template-columns: 1fr; min-height: 0; }
+  .evidence { min-height: 0; }
   .about__photo { max-width: 300px; }
   .story-open, .docs { min-height: 0; }
   .chapter { padding-top: 0; gap: 20px; }
@@ -344,8 +404,8 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
   .abilities { grid-template-columns: 1fr; }
   .abilities li { padding: 14px 0; border-bottom: 1px solid var(--line); }
   /* 3열이면 칸이 좁아 문서 이름이 한 글자씩 세로로 쪼개지므로 한 줄에 하나씩 */
-  .doc-list { grid-template-columns: 1fr; }
-  .evidence__works { border-left: 0; padding-left: 0; border-top: 1px solid var(--ink); padding-top: 2rem; }
+  .doc-list, .past-works ul { grid-template-columns: 1fr; }
+  .evidence__cols { grid-template-columns: 1fr; gap: 0; }
   /* 한 화면에 맞추려고 줄인 기록·대표작 카드 간격을 세로로 읽는 화면에서는 다시 넓힌다 */
   .card--evidence { --pad-y: 48px; }
   .card--evidence .eyebrow { margin-bottom: 1rem; }
@@ -377,13 +437,11 @@ a.doc:hover .doc__meta { color: var(--ink); text-decoration: underline; }
 }
 @media (max-width: 1100px) {
   .records-top { grid-template-columns: 1fr; }
-  .past-works ul { grid-template-columns: repeat(2, 1fr); }
   .timeline li { grid-template-columns: 8.5em 1fr; }
   .timeline__detail { grid-column: 2; }
 }
 @media (max-width: 520px) {
   .metrics.metrics--pair { grid-template-columns: 1fr; }
-  .past-works ul { grid-template-columns: 1fr; }
   .timeline li { grid-template-columns: 1fr; gap: 0; }
   .timeline__detail { grid-column: auto; }
   .meta-bar { grid-template-columns: 1fr 1fr; }
